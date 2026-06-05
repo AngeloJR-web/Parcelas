@@ -325,7 +325,7 @@ function App() {
             <div className="search-header"><h1>Meus Cartões</h1></div>
             {showForm && (
               <form className="inline-form" onSubmit={handleCardSubmit} style={{ marginBottom: '20px', borderColor: editingCardId ? '#3b82f6' : 'var(--border-color)' }}>
-                <div className="form-group"><label>Instituição</label><input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required /></div>
+                <div className="form-group"><label>Banco</label><input type="text" className="form-input" value={name} onChange={(e) => setName(e.target.value)} required /></div>
                 <div className="form-group"><label>Fechamento</label><input type="number" className="form-input" min="1" max="31" value={closingDate} onChange={(e) => setClosingDate(e.target.value)} required /></div>
                 <div className="form-group"><label>Vencimento</label><input type="number" className="form-input" min="1" max="31" value={dueDate} onChange={(e) => setDueDate(e.target.value)} required /></div>
                 <div className="form-group"><label>Limite Total</label><input type="number" className="form-input" step="0.01" value={limitTotal} onChange={(e) => setLimitTotal(e.target.value)} required /></div>
@@ -358,7 +358,7 @@ function App() {
                 )
               })}
             </div>
-            <button className="btn-full-width" onClick={handleOpenAddCardForm}>+ Adicionar Cartão Dinâmico</button>
+            <button className="btn-full-width" onClick={handleOpenAddCardForm}>+ Adicionar Cartão</button>
           </>
         )}
 
