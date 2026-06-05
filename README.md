@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <b>Gerenciador financeiro desktop de alta performance para controle de gastos e faturas.</b>
+  <b>Gerenciador financeiro desktop para controle de gastos e faturas.</b>
 </p>
 
 <p align="center">
@@ -20,7 +20,6 @@
 ## 🚀 Sobre o Projeto
 O **Parcelas** é uma aplicação desktop desenvolvida para oferecer controle total sobre gastos no cartão de crédito. Com ele, você não apenas registra compras, mas calcula automaticamente o impacto de parcelas em faturas futuras, evitando surpresas no final do mês. 
 
-O foco principal é a **performance**, **privacidade** (dados locais) e **estética moderna** (Dark Mode).
 
 ## ✨ Funcionalidades
 - [x] **Gestão de Cartões:** Cadastro dinâmico com cálculo de datas de fechamento e vencimento.
