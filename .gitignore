@@ -1,0 +1,18 @@
+# Dependências
+node_modules/
+
+# Pastas de Build e Distribuição do Electron
+dist/
+out/
+
+# Banco de Dados Local (para não subir os seus gastos pessoais)
+*.db
+*.sqlite
+*.sqlite3
+
+# Ficheiros de ambiente e logs
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
