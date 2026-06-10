@@ -226,8 +226,7 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 80
 .big-add-card:hover { border-color: #a855f7; background: rgba(255,255,255,0.04); }
 .add-icon-circle { width: 45px; height: 45px; border-radius: 50%; border: 1px solid #a855f7; color: #a855f7; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background: rgba(168, 85, 247, 0.05); transition: transform 0.2s; }
 .big-add-card:hover .add-icon-circle { transform: scale(1.1); background: rgba(168, 85, 247, 0.15); }
-.big-add-title { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
-.stats-bar { display: flex; background: rgba(22, 22, 26, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 25px; gap: 20px; backdrop-filter: blur(10px); transition: all 0.3s ease; }
+.stats-bar { display: flex; background: rgba(22, 22, 26, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 16px; padding: 25px; gap: 20px; backdrop-filter: blur(10px); }
 .stat-item { flex: 1; display: flex; align-items: center; gap: 15px; border-right: 1px solid rgba(255,255,255,0.05); padding-right: 20px; }
 .stat-item:last-child { border-right: none; padding-right: 0; }
 .stat-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
@@ -280,6 +279,18 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 80
 .invoice-hint { margin-top: 20px; background: rgba(22, 22, 26, 0.6); padding: 15px 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; color: var(--text-secondary); font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; }
 .invoice-hint-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,0.05); color: var(--text-main); display: flex; align-items: center; justify-content: center; font-weight: bold; border: 1px solid rgba(255,255,255,0.1); }
 
+/* =========================================
+   NOVO: TOGGLE SWITCH (INTERRUPTOR)
+   ========================================= */
+.toggle-switch-container { display: flex; align-items: center; gap: 10px; }
+.toggle-switch-label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; user-select: none; }
+.toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.toggle-input { opacity: 0; width: 0; height: 0; }
+.toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.1); transition: .3s; border-radius: 24px; border: 1px solid var(--border-color); }
+.toggle-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: var(--text-secondary); transition: .3s; border-radius: 50%; }
+.toggle-input:checked + .toggle-slider { background-color: rgba(92, 214, 133, 0.2); border-color: var(--brand-green); }
+.toggle-input:checked + .toggle-slider:before { transform: translateX(20px); background-color: var(--brand-green); }
+
 .reports-grid { display: grid; grid-template-columns: 360px 1fr; gap: 25px; margin-bottom: 25px; align-items: stretch; }
 .reports-panel { background: rgba(22, 22, 26, 0.6); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 30px; display: flex; flex-direction: column; backdrop-filter: blur(10px); transition: all 0.3s ease; }
 .reports-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
@@ -306,6 +317,11 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 80
 .r-value { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
 .date-picker-mock { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 18px; border-radius: 10px; color: var(--text-secondary); display: flex; align-items: center; cursor: pointer; transition: all 0.3s ease; }
 
+.modal-slider-input { background-color: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 20px 8px 10px; border-radius: 8px; font-weight: 600; width: 65px; text-align: center; color: var(--text-main); outline: none; font-family: 'Inter', sans-serif; transition: border-color 0.2s; }
+.modal-slider-input:focus { border-color: var(--brand-green); }
+.modal-slider-input::-webkit-outer-spin-button, .modal-slider-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.modal-slider-input[type=number] { -moz-appearance: textfield; }
+
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 9999; }
 .modal-container { background-color: var(--bg-panel); border: 1px solid var(--border-color); width: 440px; border-radius: 16px; padding: 30px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); position: relative; transition: all 0.3s ease; }
 .modal-close { position: absolute; top: 25px; right: 25px; cursor: pointer; color: var(--text-secondary); font-size: 1.2rem; background: none; border: none; }
@@ -318,7 +334,6 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 80
 .modal-input:focus { border-color: var(--brand-green); }
 .modal-slider-row { display: flex; align-items: center; gap: 15px; }
 .modal-slider { flex: 1; accent-color: var(--brand-green); cursor: pointer; }
-.modal-slider-value { background-color: var(--bg-main); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 8px; font-weight: 600; width: 60px; text-align: center; }
 .modal-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 5px; }
 .modal-tag { background-color: rgba(255, 255, 255, 0.05); color: var(--text-secondary); font-size: 0.8rem; padding: 6px 12px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
 .modal-tag:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--text-main); }
@@ -346,9 +361,7 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 80
 @keyframes slideInRight { from { transform: translateX(120%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
 
-/* =========================================
-   TEMA CLARO (LIGHT THEME) OVERRIDES
-   ========================================= */
+/* TEMA CLARO (LIGHT THEME) OVERRIDES */
 body.light-theme {
   --bg-main: #f3f4f6;
   --bg-sidebar: #ffffff;
@@ -391,13 +404,13 @@ body.light-theme .p-detail-right, body.light-theme .p-sec-title,
 body.light-theme .p-s-value, body.light-theme .pref-title,
 body.light-theme .act-title, body.light-theme .edit-header-title h1,
 body.light-theme .stat-value, body.light-theme .big-add-title,
-body.light-theme .modal-title { 
+body.light-theme .modal-title, body.light-theme .toggle-switch-label { 
   color: #1f2937 !important; 
 }
 
 body.light-theme .form-input, body.light-theme .edit-input, 
 body.light-theme .pref-select, body.light-theme .modal-input, 
-body.light-theme .modal-slider-value { 
+body.light-theme .modal-slider-input { 
   background-color: #ffffff !important; color: #1f2937 !important; border-color: #d1d5db !important; 
 }
 
@@ -428,12 +441,10 @@ body.light-theme .action-btn-outline { background: #ffffff !important; }
 body.light-theme .btn-cancel { border-color: #d1d5db !important; color: #4b5563 !important; }
 body.light-theme .btn-cancel:hover { background-color: #f3f4f6 !important; }
 
-/* =========================================
-   CORREÇÃO DOS MENUS SUSPENSOS (DROPDOWNS) GERAIS
-   ========================================= */
-select option {
-  background-color: #16161a; /* Fundo escuro padrão */
-  color: #ffffff;
-  font-size: 0.95rem;
-  padding: 10px;
-}
+/* Correção Light mode Toggle Switch */
+body.light-theme .toggle-slider { background-color: #e5e7eb; border-color: #d1d5db; }
+body.light-theme .toggle-slider:before { background-color: #fff; }
+body.light-theme .toggle-input:checked + .toggle-slider { background-color: rgba(92, 214, 133, 0.2); border-color: var(--brand-green); }
+body.light-theme .toggle-input:checked + .toggle-slider:before { background-color: var(--brand-green); }
+
+select option { background-color: #16161a; color: #ffffff; font-size: 0.95rem; padding: 10px; }
