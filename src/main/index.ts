@@ -4,7 +4,6 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import db, { initDB } from './database'
 
-// 1. FORÇA O NOME DO APLICATIVO EM TODOS OS ALERTAS DO SISTEMA
 app.setName('Parcelas');
 
 function createWindow(): void {
@@ -12,8 +11,8 @@ function createWindow(): void {
     width: 1000,
     height: 700,
     show: false,
-    title: 'Parcelas', // 2. FORÇA O NOME NA BARRA DE TÍTULO DA JANELA
-    icon: icon,        // 3. FORÇA O SEU ÍCONE PERSONALIZADO NA BARRA DE TAREFAS
+    title: 'Parcelas', 
+    icon: icon,        
     autoHideMenuBar: true,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -75,7 +74,7 @@ app.whenReady().then(() => {
     })
   })
 
-  // --- COMPRAS E PARCELAS ---
+  // --- COMPRAS E PARCELAS (CÁLCULO ATUALIZADO PARA O MÊS SEGUINTE) ---
   ipcMain.handle('add-purchase', async (_, purchase) => {
     try {
       const { cardId, description, totalAmount, installmentsCount, purchaseDate, category } = purchase;
@@ -93,11 +92,10 @@ app.whenReady().then(() => {
 
       const amountPerInstallment = totalAmount / installmentsCount;
       const purchaseDateObj = new Date(purchaseDate + 'T00:00:00'); 
-      const purchaseDay = purchaseDateObj.getDate();
-      let baseMonth = purchaseDateObj.getMonth();
+      
+      // ALTERAÇÃO CRUCIAL: O mês base agora sempre começa com +1 (mês seguinte ao da compra)
+      let baseMonth = purchaseDateObj.getMonth() + 1;
       let baseYear = purchaseDateObj.getFullYear();
-
-      if (purchaseDay >= card.closingDate) baseMonth += 1;
 
       for (let i = 0; i < installmentsCount; i++) {
         let targetMonth = baseMonth + i;
@@ -145,14 +143,13 @@ app.whenReady().then(() => {
         );
       });
 
-      // 3. Recalcular e gerar as novas parcelas
+      // 3. Recalcular e gerar as novas parcelas sempre iniciando no mês seguinte
       const amountPerInstallment = totalAmount / installmentsCount;
       const purchaseDateObj = new Date(purchaseDate + 'T00:00:00'); 
-      const purchaseDay = purchaseDateObj.getDate();
-      let baseMonth = purchaseDateObj.getMonth();
+      
+      // ALTERAÇÃO CRUCIAL: O mês base agora sempre começa com +1 (mês seguinte ao da compra)
+      let baseMonth = purchaseDateObj.getMonth() + 1;
       let baseYear = purchaseDateObj.getFullYear();
-
-      if (purchaseDay >= card.closingDate) baseMonth += 1;
 
       for (let i = 0; i < installmentsCount; i++) {
         let targetMonth = baseMonth + i;
